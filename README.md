@@ -7,6 +7,7 @@ Docker and web server set up | école 42
 * [phpMyAdmin](#phpMyAdmin)
 * [Study resources](#study)
 * [Mindmap](#mindmap) 
+* [Step by step](#step_by_step)
 * [Testing](#tests) 
 
 ## introduction
@@ -32,7 +33,10 @@ MariaDB is developed as open source software and as a relational database it pro
 
 [phpMyAdmin](https://www.phpmyadmin.net/) is a free software tool written in [PHP](https://www.php.net/), intended to handle the administration of MySQL over the Web. phpMyAdmin supports a wide range of operations on MySQL and MariaDB. Frequently used operations (managing databases, tables, columns, relations, indexes, users, permissions, etc) can be performed via the user interface, while you still have the ability to directly execute any SQL statement.
 
-# dockerfile
+## step_by_step
+
+
+### dockerfile
 
 from [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 
@@ -40,3 +44,4 @@ from [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 INSTRUCTION arguments
 ```
 The instruction is not case-sensitive. However, convention is for them to be UPPERCASE to distinguish them from arguments more easily.
+

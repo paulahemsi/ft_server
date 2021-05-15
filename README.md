@@ -33,6 +33,8 @@ MariaDB is developed as open source software and as a relational database it pro
 
 [phpMyAdmin](https://www.phpmyadmin.net/) is a free software tool written in [PHP](https://www.php.net/), intended to handle the administration of MySQL over the Web. phpMyAdmin supports a wide range of operations on MySQL and MariaDB. Frequently used operations (managing databases, tables, columns, relations, indexes, users, permissions, etc) can be performed via the user interface, while you still have the ability to directly execute any SQL statement.
 
+The phpMyAdmin server will listen on port 80.
+
 ## step_by_step
  
 `Docker builds images automatically by reading the instructions from a Dockerfile -- a text file that contains all commands, in order, needed to build a given image.`
@@ -52,7 +54,11 @@ _____________________
 `service --status-all` allow us to see the services running in the machine and `service nginx stop` stops the nginx, so we can use it and run the container
 ____________________
 
-* inside the container, I install everything I need for the project. Firts, actually, I checked if there was some update with `apt-get update`, then I installed nginx `apt-get install nginx` (need to answer `y` at some point, so a `-y` must be included in the respective dockerfile rule), 
+* inside the container, I install everything I need for the project. Firts, actually, I checked if there was some update with `apt-get update`, then I installed nginx `apt-get install nginx` (need to answer `y` at some point, so a `-y` must be included in the respective dockerfile rule). To check if nginx is running, I wrote `localhost` on the browser, but nothing happens. Looking again in the services, nginx was enable, so `service nginx start` solved the problem. Nginx done!
+
+* php `apt-get install php-gd php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-common php7.3-json php7.3-opcache	php7.3-readline php-json php-mbstring php7.3-mbstring php-curl php-gd php-intl php-soap php-xml php-xmlrpc php-zip` also with `-y`
+
+* mariaDB 
 
 * `ctrl` + `d` closes the container
 
@@ -63,6 +69,8 @@ ____________________
 * `docker stop <container_name>` stops the container
 
 * After this firts test, I removed the container `docker rm <container_name>` and the image `docker rmi <image_name>` and edited my dockerfile with the next steps I had previusly did manualy
+
+* `sudo apt update` and `sudo apt upgrade -y && sudo reboot` ensures the system is updated
 
 "The image defined by your Dockerfile should generate containers that are as ephemeral as possible. By “ephemeral”, we mean that the container can be stopped and destroyed, then rebuilt and replaced with an absolute minimum set up and configuration." from [Dockerfile best pratices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 
@@ -78,3 +86,8 @@ INSTRUCTION arguments
 ```
 The instruction is not case-sensitive. However, convention is for them to be UPPERCASE to distinguish them from arguments more easily.
 
+## Study rescources
+
+* step-by-step [notion](https://www.notion.so/Ft_server-860971f658a7449c89796ba9ebd995f4) by [Lais Arena](https://github.com/laisarena)
+* dockerfile [reference](https://docs.docker.com/engine/reference/builder/#from)
+* dockerfile [best-pratices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)

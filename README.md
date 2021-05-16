@@ -56,12 +56,6 @@ ____________________
 
 * inside the container, I install everything I need for the project. Firts, actually, I checked if there was some update with `apt-get update`, then I installed nginx `apt-get install nginx` (need to answer `y` at some point, so a `-y` must be included in the respective dockerfile rule). To check if nginx is running, I wrote `localhost` on the browser, but nothing happens. Looking again in the services, nginx was enable, so `service nginx start` solved the problem. Nginx done!
 
-* php 
-``` 
-apt-get install php-gd php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-common php7.3-json php7.3-opcache	php7.3-readline php-json php-mbstring php7.3-mbstring php-curl php-gd php-intl php-soap php-xml php-xmlrpc php-zip
-``` 
-also with `-y`
-
 * Then, we have to edit the configuration file
 
 ```
@@ -73,6 +67,27 @@ It contains symlinks to the corresponding configuration files in sites-available
 Inside /etc/nginx/sites-available you would see a file named default. 
 It is a template file to create your own configuration files.
 ```
+
+And delete the *default* file that was already there, or the two of then will enter in conflict, listening to the same port.
+
+If nginx has any problem, is possible to check the log in `var/log/nginx/error.log`
+
+`nginx -t` checks if all the configuration was ok
+`service nginx restart` restart nginx for the new configuration to take effect.
+
+In that point, a index.html placed in the root of the server is beeing displayed at localhost 
+
+* php 
+``` 
+apt-get install php-gd php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-common php7.3-json php7.3-opcache	php7.3-readline php-json php-mbstring php7.3-mbstring php-curl php-gd php-intl php-soap php-xml php-xmlrpc php-zip
+``` 
+also with `-y`
+
+Php-FPM is dedicated fastcgi process manager for php that can interface or connect with any compatible webserver and manage php processes to process php requests.
+
+!having problems to check if php is ok with phpinfo!
+
+* Wordpress 
 
 * mariaDB 
 

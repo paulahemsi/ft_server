@@ -89,6 +89,12 @@ Php-FPM is dedicated fastcgi process manager for php that can interface or conne
 
 * Wordpress 
 
+`install wget` 
+
+```
+wget https://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz && tar -xzvf phpMyAdmin-latest-all-languages.tar.gz && mv wordpress /var/www/<server_directoty>/wordpress && mv phpMyAdmin-5.0.4-all-languages /var/www/<server_directoty>/phpMyAdmin
+```
+
 * mariaDB 
 
 * `ctrl` + `d` closes the container

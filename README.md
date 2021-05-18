@@ -1,4 +1,4 @@
-# ft_server :whale:
+ # ft_server :whale:
 Docker and web server set up | école 42
 
 * [Introduction](#introduction)
@@ -43,11 +43,13 @@ The phpMyAdmin server will listen on port 80.
 
 * to understand the step-by-step of the process, I first created a dockerfile with only the FROM rule setting the debian image.
 
+Debian is a very stable Linux distro, often choosen for servers.
+
 The `FROM` instruction initializes a new build stage and sets the Base Image (an image that has no parent image specified in its Dockerfile) for subsequent instructions. As such, a valid Dockerfile must start with a FROM instruction. The image can be any valid image – it is especially easy to start by pulling an image from the Public Repositories.
 
 * `docker build -t <image_name> .` to build the image
 
-* to run the container and be able to enter it `docker run --name <container-name> -it -p 80:80 -p 443:443 <image-name>`. The `it` instruction defines that the container will be running interactively, while `docker exec -it <container_name> sh` allow us to enter in a shell from a container that ir already running, and `exit` allow us to exit it but keep it running 
+* to run the container and be able to enter it `docker run --name <container-name> -it -p 80:80 -p 443:443 <image-name>`. The `it` instruction defines that the container will be running interactively, while `docker exec -it <container_name> bash` allow us to enter in a shell from a container that ir already running, and `exit` allow us to exit it but keep it running 
 _____________________
 * I have problems to run the container because nginx was already running in the vm
 
@@ -78,14 +80,27 @@ If nginx has any problem, is possible to check the log in `var/log/nginx/error.l
 In that point, a index.html placed in the root of the server is beeing displayed at localhost 
 
 * php 
+
 ``` 
-apt-get install php-gd php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-common php7.3-json php7.3-opcache	php7.3-readline php-json php-mbstring php7.3-mbstring php-curl php-gd php-intl php-soap php-xml php-xmlrpc php-zip
+apt-get install -y php php-cli php-xml php-mbstring php-mysql php7.3-fpm php-gd
 ``` 
 also with `-y`
 
 Php-FPM is dedicated fastcgi process manager for php that can interface or connect with any compatible webserver and manage php processes to process php requests.
 
-!having problems to check if php is ok with phpinfo!
+I created index.php with phpinfo function
+
+```
+<?php
+phpinfo();
+?>
+```
+
+and added index.php in nginx configuration file:
+# Add index.php to the list if you are using PHP
+        index **index.php** index.html index.htm index.nginx-debian.html;
+
+`service php7.3-fpm start`
 
 * Wordpress 
 
@@ -96,6 +111,10 @@ wget https://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && wget http
 ```
 
 * mariaDB 
+
+`apt-get install -y mariadb-server`
+
+`service mysql start`
 
 * `ctrl` + `d` closes the container
 
@@ -112,7 +131,10 @@ wget https://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && wget http
 "The image defined by your Dockerfile should generate containers that are as ephemeral as possible. By “ephemeral”, we mean that the container can be stopped and destroyed, then rebuilt and replaced with an absolute minimum set up and configuration." from [Dockerfile best pratices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 
 * 
-
+-------
+```
+docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+-------
 
 ### dockerfile
 
@@ -122,6 +144,17 @@ from [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 INSTRUCTION arguments
 ```
 The instruction is not case-sensitive. However, convention is for them to be UPPERCASE to distinguish them from arguments more easily.
+
+
+ENTRYPOINT
+
+The best use for `ENTRYPOINT`is to set the image's main command, allowing that image to be run as though it was that command.
+
+`ENTRYPOINT` gives a container its default nature or behavior. (can be override with -entrypoint flag in docker run command)
+`CMD` dafault is in the dockerfile but can be overrun when docker run command is wrotten.
+
+`RUN` command will be used to build the image
+`CMD` only the last one will be executed when we start the container
 
 ## Study rescources
 

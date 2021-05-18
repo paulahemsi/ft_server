@@ -97,8 +97,9 @@ phpinfo();
 ```
 
 and added index.php in nginx configuration file:
-# Add index.php to the list if you are using PHP
-        index **index.php** index.html index.htm index.nginx-debian.html;
+```
+index **index.php** index.html index.htm index.nginx-debian.html;
+```
 
 `service php7.3-fpm start`
 
@@ -134,6 +135,7 @@ wget https://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && wget http
 -------
 ```
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+```
 -------
 
 ### dockerfile

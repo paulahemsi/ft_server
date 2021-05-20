@@ -22,7 +22,6 @@ RUN	rm	./etc/nginx/sites-available/default && \
 # website folder with phpinfo
 RUN mkdir ./var/www/demo_site && \
 	echo "<?php phpinfo(); ?>" >> ./var/www/demo_site/info.php
-
 #PHPMYADMIN
 RUN	wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz && \
 	tar xvf phpMyAdmin-4.9.0.1-all-languages.tar.gz && \
@@ -47,5 +46,4 @@ EXPOSE 443
 
 WORKDIR	/
 
-#!mudar
 ENTRYPOINT	sed --in-place "s/AUTOINDEX/$AUTOINDEX/g" ./etc/nginx/sites-available/demo_site && service nginx start && service mysql start && service php7.3-fpm start && sleep infinity

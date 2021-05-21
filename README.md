@@ -147,6 +147,9 @@ INSTRUCTION arguments
 ```
 The instruction is not case-sensitive. However, convention is for them to be UPPERCASE to distinguish them from arguments more easily.
 
+#clean clears out the local repository of retrieved package files.
+	apt-get clean
+
 
 ENTRYPOINT
 

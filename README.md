@@ -35,6 +35,47 @@ MariaDB is developed as open source software and as a relational database it pro
 
 The phpMyAdmin server will listen on port 80.
 
+## dockerfile
+
+from [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+
+```
+INSTRUCTION arguments
+```
+The instruction is not case-sensitive. However, convention is for them to be UPPERCASE to distinguish them from arguments more easily.
+
+
+
+ENTRYPOINT
+
+The best use for `ENTRYPOINT`is to set the image's main command, allowing that image to be run as though it was that command.
+
+`ENTRYPOINT` gives a container its default nature or behavior. (can be override with -entrypoint flag in docker run command)
+`CMD` dafault is in the dockerfile but can be overrun when docker run command is wrotten.
+
+`RUN` command will be used to build the image
+`CMD` only the last one will be executed when we start the container
+
+ADD
+
+The ADD instruction copies new files, directories or remote file URLs from <src> and adds them to the filesystem of the image at the path <dest>.
+
+RUN
+
+The RUN instruction will execute any commands in a new layer on top of the current image and commit the results. The resulting committed image will be used for the next step in the Dockerfile.
+
+Layering RUN instructions and generating commits conforms to the core concepts of Docker where commits are cheap and containers can be created from any point in an image’s history, much like source control.
+
+FROM
+
+The FROM instruction initializes a new build stage and sets the Base Image for subsequent instructions.
+
+ENV
+
+The ENV instruction sets the environment variable <key> to the value <value>. This value will be in the environment for all subsequent instructions in the build stage and can be replaced inline in many as well. The value will be interpreted for other environment variables, so quote characters will be removed if they are not escaped. Like command line parsing, quotes and backslashes can be used to include spaces within values.
+
+
+
 ## step_by_step
  
 `Docker builds images automatically by reading the instructions from a Dockerfile -- a text file that contains all commands, in order, needed to build a given image.`
@@ -138,28 +179,7 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 -------
 
-### dockerfile
 
-from [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
-
-```
-INSTRUCTION arguments
-```
-The instruction is not case-sensitive. However, convention is for them to be UPPERCASE to distinguish them from arguments more easily.
-
-#clean clears out the local repository of retrieved package files.
-	apt-get clean
-
-
-ENTRYPOINT
-
-The best use for `ENTRYPOINT`is to set the image's main command, allowing that image to be run as though it was that command.
-
-`ENTRYPOINT` gives a container its default nature or behavior. (can be override with -entrypoint flag in docker run command)
-`CMD` dafault is in the dockerfile but can be overrun when docker run command is wrotten.
-
-`RUN` command will be used to build the image
-`CMD` only the last one will be executed when we start the container
 
 ## Study rescources
 

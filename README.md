@@ -6,8 +6,8 @@ Docker and web server set up | école 42
 * [MariaDB](#mariaDB)
 * [phpMyAdmin](#phpMyAdmin)
 * [Dockerfile](#dockerfile) 
-* [Study resources](#study)
-* [useful commands](#useful)
+* [Study resources](#study_rescources)
+* [useful commands](#useful_commands)
 
 ## introduction
 
@@ -78,7 +78,7 @@ The `FROM` instruction initializes a new build stage and sets the Base Image (an
 The `ENV` instruction sets the environment variable <key> to the value <value>. This value will be in the environment for all subsequent instructions in the build stage and can be replaced inline in many as well. The value will be interpreted for other environment variables, so quote characters will be removed if they are not escaped. Like command line parsing, quotes and backslashes can be used to include spaces within values.
 
  
-## Study rescources
+## study_rescources
 
 * step-by-step [notion](https://www.notion.so/Ft_server-860971f658a7449c89796ba9ebd995f4) by [Lais Arena](https://github.com/laisarena)
 * dockerfile [reference](https://docs.docker.com/engine/reference/builder/#from)
@@ -87,7 +87,7 @@ The `ENV` instruction sets the environment variable <key> to the value <value>. 
 * [editing wp-config](https://wordpress.org/support/article/editing-wp-config-php/)
 
  
-## useful commands
+## useful_commands
  
 `docker build -t <image_name> .` to build the image
 
